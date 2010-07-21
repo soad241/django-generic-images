@@ -1,0 +1,55 @@
+django-generic-images is a generic images pluggable django app.
+License: MIT.
+Author: Mikhail Korobov
+
+This app provides image model (useful managers, methods and fields)
+that can be attached to any other Django model using generic relations.
+It also provides admin multi-image uploader (based on
+GearsUploader, http://bitbucket.org/kmike/gearsuploader/) with client-side
+image resizing, animated progress bar and before-upload image previews.
+
+Requirements: django 1.1 (or trunk).
+
+django-composition (http://bitbucket.org/daevaorn/django-composition/) is
+required if you want to use ImageCountField or UserImageCountField.
+
+There is an image gallery app
+(django-photo-albums, http://bitbucket.org/kmike/django-photo-albums)
+based on django-generic-images.
+
+************
+Installation
+************
+::
+
+    $ pip install django-generic-images
+
+or::
+
+    $ easy_install django-generic-images
+
+or::
+
+    $ hg clone http://bitbucket.org/kmike/django-generic-images/
+    $ cd django-generic-images
+    $ python setup.py install
+
+Then add 'generic_images' to your ``INSTALLED_APPS`` in settings.py and run ::
+
+    $ manage.py syncdb
+
+If you want ``ImageCountField`` and ``UserImageCountField`` then follow
+installation instructions at  http://bitbucket.org/daevaorn/django-composition/
+to install django-composition.
+
+For admin uploader to work ``generic_images`` folder from
+``generic_images/media/`` should be copied to project's ``MEDIA_ROOT``.
+
+
+*****
+Usage
+*****
+
+Please check documentation for usage instructions:
+
+http://django-generic-images.googlecode.com/hg/docs/_build/html/index.html
