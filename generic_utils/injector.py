@@ -1,0 +1,1 @@
+from generic_utils.managers import GenericInjector

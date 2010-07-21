@@ -1,0 +1,122 @@
+<style>
+    .module h2 a{color: white; text-decoration: underline;}
+    #gears-uploader, #request-user-id {display:none;}
+
+    .container {overflow:hidden;}
+    .clear {clear: both;}
+
+    /* Progress bar styles */
+    #progress-bar {
+        border:1px solid Lavender;
+        width:280px;
+        height:16px;
+        margin: 8px 0px 8px 0px;
+        float:left;
+        display:none;
+    }
+    #progress-bar-box-id {float:left; width: 100%;}
+    #progress-bar-percentage-id { background: RoyalBlue; height:16px; }
+    #progress-bar-display-id {color:black; padding-left: 288px;}
+
+    /* Uploader */
+
+    #thumbs img {width: 200px; padding: 8px;}
+
+</style>
+
+{% load i18n %}
+<div class="inline-group">
+  <div class="tabular inline-related {% if forloop.last %}last-related{% endif %}">
+{{ inline_admin_formset.formset.management_form }}
+<fieldset class="module">
+   <h2>{{ inline_admin_formset.opts.verbose_name_plural|capfirst }}:</h2>
+
+   {% if original %}
+       <div id='gears-please-install' class='form-row'>
+           {% blocktrans %}
+               Please install or update Google's
+               <a href='http://gears.google.com/?action=install'>Gears</a> plugin
+               in order to enable advanced image uploader.
+           {% endblocktrans %}
+       </div>
+       <div id='gears-uploader' class='form-row'>
+            <input type='checkbox' id='gears-resize-needed' {{ inline_admin_formset.opts.max_w|yesno:"checked," }}>
+            <label for='gears-resize-needed'>{% trans "Resize if width is greater than " %}</label>
+            <input type='text' id='gears-resize-width' value='{{ inline_admin_formset.opts.max_w }}' size='4'> px
+            <br>
+            <input type='button' value='{% trans "Select images to upload" %}' id='select-handler'>
+            <input type='button' value='{% trans "Upload images" %}' id='upload-handler'>
+            <span id='upload-status'></span>
+            <span id='request-user-id'>{{ request.user.pk }}</span>
+
+            <div class='container'>
+                <div id='progress-bar'></div>
+                <div class='clear'></div>
+            </div>
+
+            <div id='thumbs'></div>
+       </div>
+   {% endif %}
+
+   <div id='standard-inline'>
+       {{ inline_admin_formset.formset.non_form_errors }}
+       <table>
+         <thead><tr>
+         {% for field in inline_admin_formset.fields %}
+           {% if not field.is_hidden %}
+             <th {% if forloop.first %}colspan="2"{% endif %}>{{ field.label|capfirst }}</th>
+            {% endif %}
+         {% endfor %}
+         {% if inline_admin_formset.formset.can_delete %}<th>{% trans "Delete?" %}</th>{% endif %}
+         </tr></thead>
+
+         <tbody>
+         {% for inline_admin_form in inline_admin_formset %}
+            {% if inline_admin_form.form.non_field_errors %}
+            <tr><td colspan="{{ inline_admin_form.field_count }}">{{ inline_admin_form.form.non_field_errors }}</td></tr>
+            {% endif %}
+            <tr class="{% cycle row1,row2 %} {% if inline_admin_form.original or inline_admin_form.show_url %}has_original{% endif %}">
+
+            <td class="original">
+              {% if inline_admin_form.original or inline_admin_form.show_url %}<p>
+              {% if inline_admin_form.original %} {{ inline_admin_form.original }}{% endif %}
+              {% if inline_admin_form.show_url %}<a href="../../../r/{{ inline_admin_form.original_content_type_id }}/{{ inline_admin_form.original.id }}/">{% trans "View on site" %}</a>{% endif %}
+                </p>{% endif %}
+              {% if inline_admin_form.has_auto_field %}{{ inline_admin_form.pk_field.field }}{% endif %}
+              {{ inline_admin_form.fk_field.field }}
+              {% spaceless %}
+              {% for fieldset in inline_admin_form %}
+                {% for line in fieldset %}
+                  {% for field in line %}
+                    {% if field.is_hidden %} {{ field.field }} {% endif %}
+                  {% endfor %}
+                {% endfor %}
+              {% endfor %}
+              {% endspaceless %}
+            </td>
+
+            {% for fieldset in inline_admin_form %}
+              {% for line in fieldset %}
+                {% for field in line %}
+                  <td class="{{ field.field.name }}">
+                  {{ field.field.errors.as_ul }}
+                  {{ field.field }}
+                  </td>
+                {% endfor %}
+              {% endfor %}
+            {% endfor %}
+
+            {% if inline_admin_formset.formset.can_delete %}
+              <td class="delete">{% if inline_admin_form.original %}{{ inline_admin_form.deletion_field.field }}{% endif %}</td>
+            {% endif %}
+
+            </tr>
+
+         {% endfor %}
+         </tbody>
+       </table>
+    </div>
+</fieldset>
+
+  </div>
+</div>

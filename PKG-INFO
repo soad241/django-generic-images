@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: django-generic-images
+Version: 0.36.1
+Summary: Generic images pluggable django app
+Home-page: http://bitbucket.org/kmike/django-generic-images/
+Author: Mikhail Korobov
+Author-email: kmike84@gmail.com
+License: MIT license
+Download-URL: http://bitbucket.org/kmike/django-generic-images/get/tip.zip
+Description: This app provides image model (with useful managers, methods and fields) that can be attached to any other Django model using generic relations. It also provides admin multi-image uploader with client-side image resizing, animated progress bar and before-upload image previews.
+        
+        Documentation is here: http://django-generic-images.googlecode.com/hg/docs/_build/html/index.html
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires: django (>=1.1)

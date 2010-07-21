@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-10-26 03:21+0500\n"
+"PO-Revision-Date: 2009-12-01 13:19+0100\n"
+"Last-Translator: Maciej Wiśniowski <pigletto@gmail.com>\n"
+"Language-Team: Maciej Wiśniowski <pigletto@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Polish\n"
+"X-Poedit-Country: POLAND\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#: admin.py:17
+#: models.py:91
+msgid "Caption"
+msgstr "Nagłówek"
+
+#: models.py:31
+msgid "Image"
+msgstr "Obraz"
+
+#: models.py:87
+msgid "User"
+msgstr "Użytkownik"
+
+#: models.py:94
+msgid "Main image"
+msgstr "Główny obraz"
+
+#: models.py:96
+msgid "Order"
+msgstr "Kolejność"
+
+#: templates/generic_images/attached_images_inline.html:34
+msgid ""
+"\n"
+"           Please install or update Google's\n"
+"           <a href='http://gears.google.com/?action=install'>Gears</a> plugin\n"
+"           in order to enable advanced image uploader.\n"
+"       "
+msgstr ""
+"\n"
+"           Zainstaluj lub zaktualizuj plugin Google's\n"
+"           <a href='http://gears.google.com/?action=install'>Gears</a> \n"
+"           aby móc używać zaawansowanego mechanizmu ładowania plików.\n"
+"        "
+
+#: templates/generic_images/attached_images_inline.html:42
+msgid "Resize if width is greater than "
+msgstr "Zmień rozmiar jeśli szerokość jest większa niż"
+
+#: templates/generic_images/attached_images_inline.html:45
+msgid "Select images to upload"
+msgstr "Wybierz obrazy do załadowania"
+
+#: templates/generic_images/attached_images_inline.html:46
+msgid "Upload images"
+msgstr "Załaduj obrazy"
+
+#: templates/generic_images/attached_images_inline.html:67
+msgid "Delete?"
+msgstr "Usunąć?"
+
+#: templates/generic_images/attached_images_inline.html:80
+msgid "View on site"
+msgstr "Podgląd na stronie"
+
