@@ -232,5 +232,8 @@ class AttachedImage(AbstractAttachedImage):
         generic relations. It is simply non-abstract subclass of
         :class:`~generic_images.models.AbstractAttachedImage`
     '''
+    def get_absolute_url(self):
+        return ''
+    
     class Meta:
         ordering = ['-order']
