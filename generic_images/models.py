@@ -1,5 +1,5 @@
 #coding: utf-8
-import os
+import os, time
 #import random
 
 from django.db import models
@@ -172,8 +172,8 @@ class AbstractAttachedImage(ReplaceOldImageModel, GenericModelBase):
             method. By default it is probable id of new image (it is
             predicted as it is unknown at this stage).
         '''
-        user_folder = str(self.user.pk) if self.user else 'common'
-
+        
+        user_folder = time.strftime('%Y/%m/%d')
         root, ext = os.path.splitext(filename)
         return os.path.join('media', 'images', user_folder,
                             self.get_file_name(filename) + ext)
