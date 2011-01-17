@@ -175,7 +175,7 @@ class AbstractAttachedImage(ReplaceOldImageModel, GenericModelBase):
         
         user_folder = time.strftime('%Y/%m/%d')
         root, ext = os.path.splitext(filename)
-        return os.path.join('media', 'images', user_folder,
+        return os.path.join('media', 'new_images', user_folder,
                             self.get_file_name(filename) + ext)
 
 
