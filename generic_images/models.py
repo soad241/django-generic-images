@@ -38,9 +38,9 @@ class BaseImageModel(models.Model):
         blank=True, null=True,
         storage=PUBLIC_MEDIA_BUCKET,
         thumbs=(
-        ('100x100', {'size': (100, 100) 'crop':False, 'upscale': False }),
-        ('300x300', {'size': (300, 300) 'crop':False, 'upscale': False }),
-        ('480x1500', {'size': (480, 1500) 'crop':False, 'upscale': False }),
+        ('100x100', {'size': (100, 100), 'crop':False, 'upscale': False }),
+        ('300x300', {'size': (300, 300), 'crop':False, 'upscale': False }),
+        ('480x1500', {'size': (480, 1500), 'crop':False, 'upscale': False }),
         ('300x100', {'size': (300, 100), 'crop':False, 'upscale': False}),
         ('130x100', {'size': (130, 100), 'crop': False, 'upscale': False}),
         ('130x100_crop', {'size': (130, 100), 'crop': 'center',
