@@ -11,6 +11,10 @@ from django.utils.translation import ugettext_lazy as _
 from generic_images.signals import image_saved, image_deleted
 from generic_images.managers import AttachedImageManager
 from generic_utils.models import GenericModelBase
+from django.conf import settings
+from athumb.fields import ImageWithThumbsField
+from athumb.backends.s3boto import S3BotoStorage_AllPublic
+PUBLIC_MEDIA_BUCKET = S3BotoStorage_AllPublic(settings.AWS_STORAGE_BUCKET_NAME)
 
 
 class BaseImageModel(models.Model):
@@ -28,7 +32,22 @@ class BaseImageModel(models.Model):
     def _upload_path_wrapper(self, filename):
         return self.get_upload_path(filename)
 
-    image = models.ImageField(_('Image'), upload_to=_upload_path_wrapper)
+    image = ImageWithThumbsField(
+        _('Image'),
+        upload_to=_upload_path_wrapper,
+        blank=True, null=True,
+        storage=PUBLIC_MEDIA_BUCKET,
+        thumbs=(
+        ('100x100', {'size': (100, 100) 'crop':False, 'upscale': False }),
+        ('300x300', {'size': (300, 300) 'crop':False, 'upscale': False }),
+        ('480x1500', {'size': (480, 1500) 'crop':False, 'upscale': False }),
+        ('300x100', {'size': (300, 100), 'crop':False, 'upscale': False}),
+        ('130x100', {'size': (130, 100), 'crop': False, 'upscale': False}),
+        ('130x100_crop', {'size': (130, 100), 'crop': 'center',
+                          'upscale': False}),
+        ))
+
+
 
     class Meta:
         abstract = True
@@ -47,8 +66,8 @@ class ReplaceOldImageModel(BaseImageModel):
         '''
         try:
             old_obj = self.__class__.objects.get(pk=self.pk)
-            if old_obj.image.path != self.image.path:
-                path = old_obj.image.path
+            if old_obj.image.name != self.image.name:
+                path = old_obj.image.name
                 default_storage.delete(path)
         except self.__class__.DoesNotExist:
             pass
