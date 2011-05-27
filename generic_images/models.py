@@ -34,6 +34,7 @@ class BaseImageModel(models.Model):
 
     image = ImageWithThumbsField(
         _('Image'),
+        thumbnail_format='jpeg',
         upload_to=_upload_path_wrapper,
         blank=True, null=True,
         storage=PUBLIC_MEDIA_BUCKET,
