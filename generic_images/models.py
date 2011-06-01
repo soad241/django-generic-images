@@ -36,7 +36,6 @@ class BaseImageModel(models.Model):
         _('Image'),
         thumbnail_format='jpeg',
         upload_to=_upload_path_wrapper,
-        blank=True, null=True,
         storage=PUBLIC_MEDIA_BUCKET,
         thumbs=(
         ('100x100', {'size': (100, 100), 'crop':False, 'upscale': False }),
