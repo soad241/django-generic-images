@@ -1,6 +1,6 @@
 #coding: utf-8
 import os, time
-#import random
+import random
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -172,12 +172,11 @@ class AbstractAttachedImage(ReplaceOldImageModel, GenericModelBase):
             Override this in subclass or assign another functions per-instance
             if you want different file names (ex: random string).
         '''
-#        alphabet = "1234567890abcdefghijklmnopqrstuvwxyz"
-#        # 1e25 variants
-#        return ''.join([random.choice(alphabet) for i in xrange(16)])
-
-        # anyway _get_next_pk is needed for setting `order` field
-        return str(self._get_next_pk())
+        alphabet = "1234567890abcdefghijklmnopqrstuvwxyz"
+        # 1e25 variants
+        return ''.join([random.choice(alphabet) for i in xrange(16)])
+        ## anyway _get_next_pk is needed for setting `order` field
+        #return str(self._get_next_pk())
 
 
     def get_upload_path(self, filename):
